@@ -17,17 +17,17 @@ print "INFO: Starting dirb scan for " + url
 for folder in folders:
     for filename in os.listdir(folder):
 
-	outfile = " -o " + "results/exam/" + name + "_dirb_" + filename
-	DIRBSCAN = "dirb %s %s/%s %s -S -r" % (url, folder, filename, outfile)
+        outfile = " -o " + "results/exam/" + name + "_dirb_" + filename
+        DIRBSCAN = "dirb %s %s/%s %s -S -r" % (url, folder, filename, outfile)
         try:
-	    results = subprocess.check_output(DIRBSCAN, shell=True)
-	    resultarr = results.split("\n")
-	    for line in resultarr:
-	        if "+" in line:
-		    if line not in found:
-		        found.append(line)
-	except:
-	    pass
+            results = subprocess.check_output(DIRBSCAN, shell=True)
+            resultarr = results.split("\n")
+            for line in resultarr:
+                if "+" in line:
+                    if line not in found:
+                        found.append(line)
+        except:
+            pass
 
 try:
     if found[0] != "":
@@ -35,4 +35,4 @@ try:
         for item in found:
             print "   " + item
 except:
-    print "INFO: No items found during dirb scan of " + url		
+    print "INFO: No items found during dirb scan of " + url
